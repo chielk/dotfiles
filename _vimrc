@@ -50,16 +50,12 @@ set nobackup
 
 set backspace=2         " Allow backspace to delete autoindent, eol, start
 set incsearch           " Incremental search
-set nocompatible
 set background=dark
 
 set nojoinspaces		" Use single space when joining sentences (not double)
 
-syntax on
-filetype off
-filetype plugin on
-filetype plugin indent on
-inoremap # X# " Work around # comment indent problem
+" Work around # comment indent problem
+inoremap # X#
 
 set foldenable          " Enable folding
 set foldmethod=marker
@@ -121,13 +117,14 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible
+filetype off
 
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required!
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'benekastah/neomake'
 Plugin 'nvie/vim-flake8'		" Pyflakes & PEP8
@@ -145,6 +142,12 @@ Plugin 'vim-scripts/JavaImp.vim--Lee'	" Automatically import java classes
 Plugin 'nowk/genericdc'
 Plugin 'vim-airline/vim-airline'	" Status line
 Plugin 'vim-airline/vim-airline-themes'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+syntax on
+filetype plugin on
 
 let g:Tlist_Use_Right_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
