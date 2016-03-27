@@ -12,5 +12,5 @@ chsh -s /bin/zsh
 cp _gitconfig ~/.gitconfig
 cp _vimrc ~/.vimrc
 cp _tmux.conf ~/.tmux.conf
-cp _Xmodmap ~/_Xmodmap
+cp _Xmodmap ~/.Xmodmap
 
