@@ -1,15 +1,14 @@
-#!/bin/sh
+#!/bin/zsh
 
-# Download and install Oh My Zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
 chsh -s /bin/zsh
 
-git clone https://github.com/zsh-users/zsh-autosuggestions.git
-mv zsh-autosuggestions ~/.oh-my-zsh/custom/plugins
-mv zsh/agnoster.zsh-theme ~/.oh-my-zsh/custom/themes
-
 # Put config files in their propec places
-cp _zshrc ~/.zshrc
 cp _gitconfig ~/.gitconfig
 cp _vimrc ~/.vimrc
 cp _tmux.conf ~/.tmux.conf
