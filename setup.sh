@@ -11,6 +11,8 @@ chsh -s /bin/zsh
 
 # Set up vim
 mkdir -p ~/.vim/bundle
+mkdir -p ~/.vim/undo
+mkdir -p ~/.vim/backup
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Put config files in their propec places

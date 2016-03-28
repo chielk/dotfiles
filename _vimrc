@@ -63,6 +63,9 @@ set foldmethod=marker
 set undodir=~/.vim/undo " Persistent undo
 set undofile
 
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
 set laststatus=2		" Statusline
 
 set ttimeout			" Don't wait too long after pressing escape
