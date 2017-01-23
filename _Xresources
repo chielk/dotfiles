@@ -1,0 +1,54 @@
+! ==============================================================================
+! URxvt
+! ==============================================================================
+URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15,xft:Terminus*
+URxvt.lineSpace: -1
+URxvt.letterSpace: -2
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+URxvt*foreground: White
+URxvt.scrollBar: off
+
+URxvt*depth: 32
+URxvt*background: [80]#000000
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+urxvt*foreground: white
+
+! ------------------------------------------------------------------------------
+! URxvt Color theme
+! ------------------------------------------------------------------------------
+*color0:  #2E3436
+*color1:  #a40000
+*color2:  #4E9A06
+*color3:  #C4A000
+*color4:  #3465A4
+*color5:  #75507B
+*color6:  #2aa198
+*color7:  #babdb9
+*color8:  #555753
+*color9:  #EF2929
+*color10: #8AE234
+*color11: #FCE94F
+*color12: #729FCF
+*color13: #AD7FA8
+*color14: #34E2E2
+*color15: #EEEEEC
+
+! ==============================================================================
+! ROFI
+! ==============================================================================
+rofi.font: DejaVu Sans Mono 12
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: argb:df000000, argb:0274796, argb:0ffffff
+rofi.color-normal: argb:0000000, #c7c7c7, argb:0000000, #00769c, #ffffff
+rofi.color-active: argb:0000000, #ffffff, argb:0000000, #2dc33a, #ffffff
+rofi.color-urgent: #ffffff, #dc322f, #ffffff, #dc322f, #ffffff

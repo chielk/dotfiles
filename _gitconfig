@@ -9,6 +9,6 @@
 [color]
 	ui = true
 [diff]
-	tool = nvimdiff
+	tool = vimdiff
 [merge]
-	tool = nvimdiff
+	tool = vimdiff
