@@ -1,7 +1,7 @@
 ! ==============================================================================
 ! URxvt
 ! ==============================================================================
-URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15,xft:Terminus*
+URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15
 URxvt.lineSpace: -1
 URxvt.letterSpace: -2
 
@@ -10,9 +10,11 @@ URxvt.secondaryScroll: 0
 
 URxvt*foreground: White
 URxvt.scrollBar: off
+URxvt.saveLines: 10000
 
 URxvt*depth: 32
 URxvt*background: [80]#000000
+!URxvt*background: #121212
 
 URxvt.iso14755: false
 URxvt.iso14755_52: false

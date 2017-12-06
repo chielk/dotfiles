@@ -1,7 +1,7 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-font pango:M+ 1m, FontAwesome, DejaVu Sans Mono, 13
+font pango:M+ 1m, FontAwesome, DejaVu Sans, 13
 
 set $mod Mod4
 set $alt Mod1
@@ -38,6 +38,8 @@ bindsym $mod+Shift+apostrophe kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+e exec dmenu_run
 bindsym $mod+e exec rofi -location 1 -width 1582 -xoffset 9 -yoffset 9  -show run
+
+bindsym $mod+l exec ~/.bin/pass.sh
 
 # change focus
 bindsym $mod+h focus left
@@ -89,15 +91,15 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 "1:1 &#xf268;"
+set $ws1 "1:1 &#xf269;"
 set $ws2 "2:2 &#xf120;"
-set $ws3 "3:3 &#xf198;"
-set $ws4 "4:4 &#xf0e5;"
+set $ws3 3
+set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
+set $ws7 "7:7 &#xf001;"
+set $ws8 "8:8 &#xf198;"
+set $ws9 "9:9 &#xf0e5;"
 set $ws10 10
 
 # switch to workspace
@@ -161,10 +163,12 @@ bindsym $mod+p mode "resize"
 # finds out, if available)
 set $transparent #00000000
 bar {
+		i3bar_command i3bar -t
 		status_command i3status
+		#status_command python /usr/local/lib/python3.6/site-packages/powerline/bindings/i3/powerline-i3.py
+
 		tray_output primary
 		strip_workspace_numbers yes
-		i3bar_command i3bar -t
 		colors {
 			background $transparent
 		}
@@ -176,14 +180,19 @@ hide_edge_borders both
 
 #bindsym F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
+# Change screen hue depending on time of the day
+exec --no-startup-id redshift
+
 # Background image
-exec --no-startup-id feh --bg-scale ~/Pictures/shuttle.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/andromeda.jpg
 
 # Compton composite manager (prevents tearing and makes stuff transparent)
-exec --no-startup-id compton --config ~/.config/compton.conf -b
+exec --no-startup-id compton --config ~/.config/compton.conf -b --inactive-dim 0.25 -i 0.9 -f -D 4 --detect-transient --blur-background
 
 # Tell nm-applet where to go
 exec --no-startup-id xrandr --output LVDS1 --primary
+# Default position for secundary screen
+exec --no-startup-id xrandr --output DP1 --auto --above LVDS1
 
 # Wireless network
 exec --no-startup-id nm-applet
@@ -197,18 +206,18 @@ exec --no-startup-id setxkbmap -option "caps:swapescape"
 new_window none
 new_float pixel 4
 
-exec /usr/bin/chromium-browser
-assign [class="chromium-browser"] $ws1
+exec /usr/bin/firefox
+assign [class="^Navigator$" instance="^Firefox$"] $ws1
 
 assign [class="^URxvt$" instance="^Terminal$"] $ws2
 exec --no-startup-id urxvtd -o
 exec urxvtcd -name Terminal
 
-assign [class="^Slack$" ] $ws3
+assign [class="^Slack$" ] $ws8
 exec /usr/bin/slack
 
-assign [class="Chromium-browser" instance="^crx_bikioccmkafdpakkkcpdbppfkghcmihk$" ] $ws4
-exec /usr/bin/chromium-browser --profile-directory=Default --app-id=bikioccmkafdpakkkcpdbppfkghcmihk
+assign [class="Signal" ] $ws9
+exec /usr/local/bin/signal-desktop
 
 for_window [class="^Pqiv$"] floating enable
 
@@ -231,6 +240,8 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym XF86Launch1 exec notify-send "ThinkVantage" "Button Pressed"
 
 # Whole screen
 bindsym Print exec --no-startup-id \

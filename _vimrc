@@ -28,7 +28,6 @@ set softtabstop=4
 
 set autoindent              " Use indentation of current line
 set cindent
-inoremap # X<BS>#
 set wrap
 
 set cole=2                  " Conceal
@@ -102,9 +101,6 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Highlight whitespace at the end of lines
-highlight OverLength ctermfg=red cterm=undercurl
-match OverLength /\%79v.\+/
 " 1 column with line
 set colorcolumn=+1        " highlight column after 'textwidth'
 highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
@@ -124,42 +120,60 @@ call vundle#begin()
 " let Vundle manage Vundle, required!
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'nvie/vim-flake8'            " Pyflakes & PEP8
+Plugin 'nvie/vim-flake8'               " Pyflakes & PEP8
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'ctrlpvim/ctrlp.vim'          " File browsing
 
 Plugin 'ConradIrwin/vim-bracketed-paste' " Automatic :set paste
 " Text objects
+Plugin 'kana/vim-textobj-function'
 Plugin 'kana/vim-textobj-user'
 Plugin 'bps/vim-textobj-python'
 Plugin 'rbonvall/vim-textobj-latex'
 
-Plugin 'scrooloose/nerdtree'        " NERDTree
-Plugin 'SirVer/ultisnips'            " Snippets
+Plugin 'SirVer/ultisnips'              " Snippets
 Plugin 'honza/vim-snippets'
-Plugin 'vim-scripts/taglist.vim'    " TagList
 
-Plugin 'tpope/vim-unimpaired'        " Key bindings
-Plugin 'tpope/vim-fugitive'          " Git bindings
-Plugin 'tpope/vim-dispatch'          " dispatch for compiling and errors
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+Plugin 'junegunn/limelight.vim'					" Highlight current code block
+
+" org mode stuff
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating'			   " Quickly edit dates
+Plugin 'vim-scripts/SyntaxRange'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-repeat'
+Plugin 'vim-scripts/utl.vim'
+
+Plugin 'w0rp/ale'										   " Asynchronous Lint Engine
+Plugin 'timothycrosley/isort'				   " Sort python imports
+autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+
+Plugin 'tpope/vim-unimpaired'          " Key bindings
+Plugin 'tpope/vim-fugitive'            " Git bindings
+Plugin 'tpope/vim-dispatch'            " dispatch for compiling and errors
 autocmd FileType python let b:dispatch = ':Make %'
 Plugin 'vim-scripts/pytest-compiler'
 autocmd FileType python let compiler = 'pytest'
 Plugin 'alfredodeza/coveragepy.vim'
 
-Plugin 'Valloric/YouCompleteMe'      " code completion
+Plugin 'Valloric/YouCompleteMe'        " code completion
 autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 Plugin 'vim-scripts/JavaImp.vim--Lee'  " Automatically import java classes
 Plugin 'nowk/genericdc'
-Plugin 'vim-airline/vim-airline'    " Status line
+
+Plugin 'vim-airline/vim-airline'       " Status line
 Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
-call vundle#end()                    " required
-filetype plugin indent on            " required
+call vundle#end()                      " required
+filetype plugin indent on              " required
 syntax on
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+let g:org_agenda_files=['~/org/index.org']
 
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
@@ -181,9 +195,8 @@ let g:ycm_confirm_extra_conf=0
 " change the mapleader from \ to ,
 let mapleader=","
 
-nmap          <leader>t :NERDTreeToggle<CR>
 nmap <silent> <leader>n :call NumberToggle()<CR>
-map           <leader>l :TlistToggle<CR>
+map           <leader>t :TagbarToggle<CR>
 map  <silent> <leader>s :%s/\s*$//g<CR>``
 map                <F8> :Dispatch<CR>
 map                <F9> :Coveragepy report<CR>
